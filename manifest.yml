@@ -1,0 +1,46 @@
+modules:
+  jira:customField:
+    - key: pizza-toppings
+      name: Pizza Toppings
+      description: A custom field for pizza toppings!
+      type: object
+      formatter:
+        expression: "value.items.map((item) => `[${item.id}] ${item.name}`).join(', ')"
+      schema:
+        properties:
+          items:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  searchAlias: ID
+                name:
+                  type: string
+                  searchAlias: Name
+        required: ["items"]
+      render: native
+      resource: main
+      edit:
+        resource: edit
+        render: native
+      resolver:
+        function: resolver
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: src/frontend/index.tsx
+  - key: edit
+    path: src/frontend/edit.tsx
+permissions:
+  external:
+    fetch:
+      backend:
+        - "https://forge-demo.azurewebsites.net"
+app:
+  runtime:
+    name: nodejs18.x
+  id: ari:cloud:ecosystem::app/08d6b112-d5fa-4e04-a895-ed4ed7025c5c

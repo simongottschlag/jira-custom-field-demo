@@ -1,0 +1,27 @@
+{
+  "name": "jira-custom-field-ui-kit-2",
+  "version": "2.0.3",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint src/**/* || npm run --silent hook-errors",
+    "hook-errors": "echo '\\x1b[31mThe build failed because a Forge UI hook is being used incorrectly. Forge UI hooks follow the same rules as React Hooks but have their own API definitions. See the Forge documentation for details on how to use Forge UI hooks.\n' && exit 1",
+    "test": "vitest --run --coverage",
+    "test:watch": "vitest --watch --coverage"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^1.6.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "@forge/api": "^3.8.0",
+    "@forge/bridge": "3.4.0",
+    "@forge/react": "10.3.0",
+    "@forge/resolver": "^1.5.36",
+    "@thames/monads": "^0.7.0",
+    "react": "^18.2.0"
+  }
+}
